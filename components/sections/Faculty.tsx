@@ -48,6 +48,7 @@ export default function Faculty() {
                   alt={`${member.name}, ${member.subject} teacher`}
                   fill
                   sizes="280px"
+                  loading="lazy"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 {member.linkedin && (

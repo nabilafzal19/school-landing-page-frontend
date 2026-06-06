@@ -7,6 +7,10 @@ const nextConfig = {
         hostname: "images.pexels.com",
       },
     ],
+    formats: ["image/avif", "image/webp"],
+  },
+  experimental: {
+    optimizePackageImports: ["lucide-react", "framer-motion"],
   },
 };
 

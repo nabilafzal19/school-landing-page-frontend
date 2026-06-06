@@ -92,6 +92,7 @@ export default function AboutUs() {
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
+              loading="lazy"
             />
           </div>
 
@@ -100,27 +101,30 @@ export default function AboutUs() {
               <Image
                 src={aboutImages.classroom}
                 alt="Teacher guiding students in a classroom"
-                width={300}
-                height={400}
-                className="rounded-2xl object-cover shadow-xl"
+              width={300}
+              height={400}
+              loading="lazy"
+              className="rounded-2xl object-cover shadow-xl"
               />
             </motion.div>
             <motion.div style={{ y: y2 }} className="absolute left-1/3 top-16 z-20">
               <Image
                 src={aboutImages.campus}
                 alt="Greenwood International School campus building"
-                width={280}
-                height={360}
-                className="rounded-2xl object-cover shadow-xl ring-2 ring-gold/40"
+              width={280}
+              height={360}
+              loading="lazy"
+              className="rounded-2xl object-cover shadow-xl ring-2 ring-gold/40"
               />
             </motion.div>
             <motion.div style={{ y: y3 }} className="absolute right-0 bottom-0 z-30">
               <Image
                 src={aboutImages.library}
                 alt="Students reading in the school library"
-                width={260}
-                height={340}
-                className="rounded-2xl object-cover shadow-xl"
+              width={260}
+              height={340}
+              loading="lazy"
+              className="rounded-2xl object-cover shadow-xl"
               />
             </motion.div>
           </div>

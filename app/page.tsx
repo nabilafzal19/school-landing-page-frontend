@@ -1,20 +1,27 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import SkipLink from "@/components/ui/SkipLink";
 import Navbar from "@/components/ui/Navbar";
-import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import Hero from "@/components/sections/Hero";
 import Stats from "@/components/sections/Stats";
-import AboutUs from "@/components/sections/AboutUs";
 import Features from "@/components/sections/Features";
 import NoticeBoard from "@/components/sections/NoticeBoard";
-import Faculty from "@/components/sections/Faculty";
-import Gallery from "@/components/sections/Gallery";
-import Testimonials from "@/components/sections/Testimonials";
-import Admissions from "@/components/sections/Admissions";
-import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/sections/Footer";
 import { SCHOOL_NAME, SCHOOL_TAGLINE } from "@/lib/constants";
 import { SITE_DESCRIPTION, SITE_URL } from "@/lib/seo";
+
+const AboutUs = dynamic(() => import("@/components/sections/AboutUs"));
+const Faculty = dynamic(() => import("@/components/sections/Faculty"));
+const Gallery = dynamic(() => import("@/components/sections/Gallery"));
+const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
+const Admissions = dynamic(() => import("@/components/sections/Admissions"));
+const ContactSection = dynamic(
+  () => import("@/components/sections/ContactSection")
+);
+const WhatsAppButton = dynamic(
+  () => import("@/components/ui/WhatsAppButton"),
+  { ssr: false }
+);
 
 export const metadata: Metadata = {
   title: `${SCHOOL_NAME} | ${SCHOOL_TAGLINE}`,

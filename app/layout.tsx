@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, Playfair_Display, Space_Mono } from "next/font/google";
 import { AdminProvider } from "@/context/AdminContext";
+import { MotionProvider } from "@/components/providers/MotionProvider";
 import { SCHOOL_NAME, SCHOOL_TAGLINE } from "@/lib/constants";
 import {
   getBreadcrumbJsonLd,
@@ -18,19 +19,22 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
   display: "swap",
+  preload: true,
 });
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-dm-sans",
   display: "swap",
+  preload: true,
 });
 
 const spaceMono = Space_Mono({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400"],
   variable: "--font-space-mono",
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -104,14 +108,15 @@ export default function RootLayout({
       className={`${playfair.variable} ${dmSans.variable} ${spaceMono.variable}`}
     >
       <head>
-        <link rel="apple-touch-icon" href="/icon" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
       <body className="pb-[env(safe-area-inset-bottom)]">
-        <AdminProvider>{children}</AdminProvider>
+        <AdminProvider>
+          <MotionProvider>{children}</MotionProvider>
+        </AdminProvider>
       </body>
     </html>
   );

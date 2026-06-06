@@ -54,29 +54,46 @@ export default function ScrollingTicker() {
 
   useEffect(() => {
     const el = scrollRef.current;
-    if (!el || activeNotices.length === 0 || autoScrollPaused) return;
+    if (!el || activeNotices.length === 0) return;
 
-    const tick = () => {
-      const container = scrollRef.current;
-      if (!container || autoScrollPaused) return;
+    let interval: ReturnType<typeof setInterval> | null = null;
 
-      const maxScroll = container.scrollHeight - container.clientHeight;
-      if (maxScroll <= 0) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !autoScrollPaused) {
+          if (interval) return;
+          interval = setInterval(() => {
+            const container = scrollRef.current;
+            if (!container || autoScrollPaused) return;
 
-      isAutoScrolling.current = true;
-      container.scrollTop += 1;
+            const maxScroll = container.scrollHeight - container.clientHeight;
+            if (maxScroll <= 0) return;
 
-      if (container.scrollTop >= maxScroll) {
-        container.scrollTop = 0;
-      }
+            isAutoScrolling.current = true;
+            container.scrollTop += 1;
 
-      requestAnimationFrame(() => {
-        isAutoScrolling.current = false;
-      });
+            if (container.scrollTop >= maxScroll) {
+              container.scrollTop = 0;
+            }
+
+            requestAnimationFrame(() => {
+              isAutoScrolling.current = false;
+            });
+          }, 40);
+        } else if (interval) {
+          clearInterval(interval);
+          interval = null;
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      if (interval) clearInterval(interval);
     };
-
-    const interval = setInterval(tick, 40);
-    return () => clearInterval(interval);
   }, [activeNotices.length, autoScrollPaused]);
 
   const handleScroll = () => {

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   NAV_LINKS,
   SCHOOL_ADDRESS,
@@ -82,16 +81,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-stone-300/50 pt-8 sm:flex-row">
+        <div className="mt-10 border-t border-stone-300/50 pt-8 text-center">
           <p className="text-xs text-slate-400">
             © {currentYear} {SCHOOL_NAME}. All rights reserved.
           </p>
-          <Link
-            href="/admin"
-            className="text-xs text-slate-400 hover:text-slate-600 transition-colors"
-          >
-            Admin
-          </Link>
         </div>
       </div>
     </footer>

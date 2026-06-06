@@ -25,7 +25,7 @@ export const aboutImages = {
 
 export const facultyPhotos = {
   priya: pexels(774909, 400, 500),
-  rajesh: pexels(1181519, 400, 500),
+  rajesh: pexels(614810, 400, 500),
   ananya: pexels(1181690, 400, 500),
   suresh: pexels(2379004, 400, 500),
   kavita: pexels(3756681, 400, 500),
